@@ -1,5 +1,6 @@
 import React from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
+
 
 const SignIn: React.FC = () => {
     const navigate = useNavigate();

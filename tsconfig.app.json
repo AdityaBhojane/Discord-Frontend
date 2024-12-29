@@ -22,5 +22,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "logo"]
+  "include": ["src", "logo", "src/pages/Home/HomePage/.jsx"]
 }
