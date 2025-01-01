@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import MyQR from '../MyQR/MyQR';
 
 
 const SignIn: React.FC = () => {
@@ -49,6 +50,7 @@ const SignIn: React.FC = () => {
                         Need an account? <span onClick={()=>navigate('/signup')} className='text-blue-400 mx-2 hover:underline cursor-pointer'>Register</span> 
                     </span>
                 </div>
+                <MyQR/>
             </div>
         </>
     );

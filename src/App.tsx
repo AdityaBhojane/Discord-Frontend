@@ -1,9 +1,13 @@
-import { RouterProvider } from "react-router-dom"
-import { router } from './routes/Router.tsx';
+import AppRouter from './routes/Router.tsx';
+import Modal from "./components/Modal/Modal.tsx";
+
 
 function App() {
   return (
-    <RouterProvider router={router} />
+    <>
+      <AppRouter/>
+      <Modal />
+    </>
   )
 }
 
