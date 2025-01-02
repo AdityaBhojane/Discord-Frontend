@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useModalStore } from "../../zustand/modal store/ModalStore";
 import CategoriesToggle from "../CategoriesToggle/CategoriesToggle";
 import Channels from "../Channels/Channels";
@@ -10,6 +11,8 @@ import SettingsIcon from "../icons svgs/SettingsIcon";
 
 export default function ServerNavPanel() {
     const setEditServerModal = useModalStore((state) => state.setEditServerModal);
+    const navigate = useNavigate()
+
 
     return (
         <div className="w-60 bg-[#2B2D31] border-r flex flex-col border-gray-700">
@@ -38,8 +41,16 @@ export default function ServerNavPanel() {
                 </div>
             </div>
             <hr className="border border-[#3f3a3a]" />
-            <CategoriesToggle categoryName={"TEXT CHANNELS"} ><Channels text={"general"} type={"text"}/></CategoriesToggle>
-            <CategoriesToggle categoryName={"VOICE CHANNELS"} ><Channels text={"general"} type={"voice"}/></CategoriesToggle>
+            <CategoriesToggle categoryName={"TEXT CHANNELS"} >
+                <div className="" onClick={() => navigate('/messages')}>
+                    <Channels text={"general"} type={"text"} />
+                </div>
+            </CategoriesToggle>
+            <CategoriesToggle categoryName={"VOICE CHANNELS"} >
+                <div className="" onClick={() => navigate('/voice')}>
+                    <Channels text={"general"} type={"voice"} />
+                </div>
+            </CategoriesToggle>
             <div className="w-full p-3 h-fit rounded-lg flex gap-3 bg-[#232428] mt-auto">
                 <div className="rounded-full bg-[#09788b]  flex justify-center items-center cursor-pointer p-2">
                     <DiscordIcon width='25px' height='25px' />

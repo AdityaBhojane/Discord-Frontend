@@ -26,7 +26,7 @@ export default function SideBar() {
             <div
                 className="h-12 w-12 rounded-full bg-gray-700 mb-4 cursor-pointer"
                 onClick={() => {
-                    navigate('/channels/:channelId');
+                    navigate('/messages');
                     setNavigation()
                 }}
             ></div>
