@@ -2,7 +2,7 @@
 
 export default function MicIcon() {
     return (
-        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg className="cursor-pointer" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_1_10817)">
                 <path d="M5.58366 10.0542H4.16699C4.16699 11.0459 4.45033 11.9709 4.91699 12.7875L5.94199 11.7625C5.71699 11.2459 5.58366 10.6709 5.58366 10.0542Z" fill="#B5BAC1" />
                 <path d="M7.50833 10.125C7.5125 10.1479 7.51667 10.1709 7.51667 10.1959L12.5 5.2042V5.0542C12.5 3.67087 11.3833 2.5542 10 2.5542C8.61667 2.5542 7.5 3.67087 7.5 5.0542V10.0542C7.5 10.0792 7.50417 10.1021 7.50833 10.125Z" fill="#B5BAC1" />

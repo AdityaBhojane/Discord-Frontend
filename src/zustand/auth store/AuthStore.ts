@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import Cookies from "js-cookie";
 
 export interface AuthState {
     user: string | null;
@@ -7,9 +8,15 @@ export interface AuthState {
     setUser: (newUser: string) => void;
 }
 
-export const useAuthStore = create<AuthState>((set)=>({
-    user:null,
-    token:null,
-    setToken:(newToken)=> set({token:newToken}),
-    setUser:(newUser)=> set({user:newUser})
-}))
+export const useAuthStore = create<AuthState>((set) => ({
+    user: Cookies.get('user') || null,
+    token: Cookies.get('token') || null,
+    setToken: (newToken: string) => {
+        Cookies.set('token', newToken);
+        set({ token: newToken });
+    },
+    setUser: (newUser: string) => {
+        Cookies.set('user', newUser);
+        set({ user: newUser });
+    }
+}));

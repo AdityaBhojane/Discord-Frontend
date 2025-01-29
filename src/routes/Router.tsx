@@ -18,8 +18,8 @@ export default function AppRouter() {
       <Route path={'/signup'} element={<Auth><SignUp /></Auth>}/>
       <Route path={'/@me'} element={<HomePage><MainContent/></HomePage>}/>
       <Route path={'/signin'} element={<Auth><SignIn /></Auth>}/>
-      <Route path={'/messages'} element={<HomePage><ServerMainContent><MessageContent/></ServerMainContent></HomePage>}/>
-      <Route path={'/voice'} element={<HomePage><ServerMainContent><VoiceMessageContent/></ServerMainContent></HomePage>}/>
+      <Route path={'/channels/:serverId/message/:channelId'} element={<HomePage><ServerMainContent><MessageContent/></ServerMainContent></HomePage>}/>
+      <Route path={'/channels/:serverId/voice'} element={<HomePage><ServerMainContent><VoiceMessageContent/></ServerMainContent></HomePage>}/>
       <Route path={'*'} element={<NotFound />}/>
     </Routes>
   )

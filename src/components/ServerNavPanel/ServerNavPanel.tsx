@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useModalStore } from "../../zustand/modal store/ModalStore";
 import CategoriesToggle from "../CategoriesToggle/CategoriesToggle";
 import Channels from "../Channels/Channels";
@@ -7,17 +7,23 @@ import EventIcon from "../icons svgs/EventIcon";
 import HeadphonesIcon from "../icons svgs/HeadphonesIcon";
 import MicIcon from "../icons svgs/MicIcon";
 import SettingsIcon from "../icons svgs/SettingsIcon";
+import { useGetServersById } from "../../Hooks/apis/server/useGetServerById";
+import { Key } from "react";
 
 
 export default function ServerNavPanel() {
     const setEditServerModal = useModalStore((state) => state.setEditServerModal);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const { serverId } = useParams();
+    //isPending,isSuccess, error, add this in future
+    const { getServerById } = useGetServersById(serverId);
+    // console.log(getServerById)
 
 
     return (
         <div className="w-60 bg-[#2B2D31] border-r flex flex-col border-gray-700">
             <div className="w-full p-2 hover:bg-[#f1f1f111] cursor-pointer flex items-center">
-                <p className="px-3 text-sm text-[#d6d6d6]">Server Name</p>
+                <p className="px-3 text-md text-[#d6d6d6] font-semibold">{getServerById?.name}</p>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -41,13 +47,21 @@ export default function ServerNavPanel() {
                 </div>
             </div>
             <hr className="border border-[#3f3a3a]" />
-            <CategoriesToggle categoryName={"TEXT CHANNELS"} >
-                <div className="" onClick={() => navigate('/messages')}>
-                    <Channels text={"general"} type={"text"} />
-                </div>
-            </CategoriesToggle>
+            {getServerById?.categories.map((category: {
+                channels(channels: {name:string}): unknown; name: string;
+            }, index: Key | null | undefined) => {
+                const channelArray = category?.channels? Object.values(category.channels):[];
+                console.log("LOG",channelArray)
+                return <CategoriesToggle key={index} categoryName={category?.name.toUpperCase()} >
+                    {channelArray.map((channel,index) => {
+                        return <div key={index} className="" onClick={() => { navigate(`/channels/${serverId}/message/${channel._id}`) }}>
+                            <Channels text={channel.name} type={"text"} />
+                        </div>
+                    })}
+                </CategoriesToggle>
+            })}
             <CategoriesToggle categoryName={"VOICE CHANNELS"} >
-                <div className="" onClick={() => navigate('/voice')}>
+                <div className="" onClick={() => navigate(`/channels/${serverId}/voice`)}>
                     <Channels text={"general"} type={"voice"} />
                 </div>
             </CategoriesToggle>
