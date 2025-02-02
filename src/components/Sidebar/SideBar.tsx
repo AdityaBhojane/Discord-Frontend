@@ -8,17 +8,19 @@ import { useNavStore } from '../../zustand/Nav Store/NavStore';
 import { useGetAllServers } from '../../Hooks/apis/server/useGetAllServers';
 import { Key, useEffect } from 'react';
 
+interface ICategory {
+    channels: string[]
+}
 
 export default function SideBar() {
     const navigate = useNavigate();
     const setNavigation = useNavStore((state) => state.setNavigation)
     const setCreateServerModal = useModalStore((state) => state.setCreateServerModal);
-
-    const { error, servers } = useGetAllServers();
-
+    const { servers, error } = useGetAllServers();
+   
     useEffect(() => {
         if (error) {
-            navigate('/error')
+            navigate('/error');
         }
     }, [error, navigate]);
 
@@ -36,13 +38,15 @@ export default function SideBar() {
                 <DiscordIcon width={'30px'} height={'30px'} />
             </div>
             {servers?.map((server: {
+                categories: ICategory[];
                 _id: string; icon: string; name: string;
             }, index: Key | null | undefined) => {
+                // console.log(server.categories[0].channels)
                 return <div
                     key={index}
                     className="h-12 w-12 rounded-full bg-gray-700 mb-4 cursor-pointer overflow-hidden"
                     onClick={() => {
-                        navigate(`/channels/${server._id}`);
+                        navigate(`/channels/${server._id}/message/${server.categories[0].channels[0]}`);
                         setNavigation()
                     }}
                 >

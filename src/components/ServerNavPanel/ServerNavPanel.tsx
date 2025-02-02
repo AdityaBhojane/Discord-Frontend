@@ -51,7 +51,7 @@ export default function ServerNavPanel() {
                 channels(channels: {name:string}): unknown; name: string;
             }, index: Key | null | undefined) => {
                 const channelArray = category?.channels? Object.values(category.channels):[];
-                console.log("LOG",channelArray)
+                // console.log("LOG",channelArray)
                 return <CategoriesToggle key={index} categoryName={category?.name.toUpperCase()} >
                     {channelArray.map((channel,index) => {
                         return <div key={index} className="" onClick={() => { navigate(`/channels/${serverId}/message/${channel._id}`) }}>

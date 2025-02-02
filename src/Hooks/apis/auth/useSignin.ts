@@ -14,7 +14,7 @@ export const useSignin = () => {
         onSuccess: (response) => {
             console.log('Successfully signed in', response);
             setToken(response.data.token);
-            setUser(response.data)
+            setUser(response.data.userId);
         },
         onError: (error) => {
             console.error('Failed to sign in', error);

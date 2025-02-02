@@ -26,8 +26,6 @@ const CreateServerModal: React.FC = () => {
   const [serverName, setServerName] = useState('');
   const queryClient = useQueryClient();
 
-  console.log(CreateServerModal)
-
   //  const token = useAuthStore((state) => state.token);
   //   const setToken = useAuthStore((state) => state.setToken);
   // const navigate = useNavigate()

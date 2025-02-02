@@ -30,8 +30,7 @@ export const getAllServerRequest = async ({token}:{token:string}) => {
         });
         return response.data.data;
     } catch(error) {
-        console.log(error)
-        ErrorHandler(error)    
+        console.log(error)   
     }
 };
 
