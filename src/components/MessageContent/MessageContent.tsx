@@ -13,7 +13,7 @@ import { useGetChannelMessages } from "../../Hooks/apis/channel/useGetChannelMes
 import { Loader2Icon, TriangleAlertIcon } from "lucide-react";
 import Message from "../Message/Message";
 import { useModalStore } from "../../zustand/modal store/ModalStore";
-import ImagePreview from "../ImagePreview/ImagePreview";
+
 
 
 interface MessageType {
@@ -28,6 +28,7 @@ interface MessageType {
 
 export default function MessageContent() {
     const setImagePreviewModal = useModalStore((state) => state.setImagePreviewModal);
+    // const ImagePreviewModal = useModalStore((state) => state.ImagePreviewModal);
     const { channelId } = useParams<{ channelId: string }>();
 
     const queryClient = useQueryClient();
@@ -71,7 +72,7 @@ export default function MessageContent() {
     useEffect(() => {
         if(isSuccess ) {
             console.log('Channel Messages fetched');
-            setMessageList(messages.reverse());
+            setMessageList(messages);
         }
     }, [isSuccess, messages, setMessageList, channelId]);
 
@@ -96,8 +97,7 @@ export default function MessageContent() {
         );
     };
 
-    console.log("LIST",messageList)
-    
+    // console.log("LIST",messageList)
     return (
         <div className="flex-1 flex flex-col">
             {/* Top Bar */}
@@ -127,8 +127,13 @@ export default function MessageContent() {
                     return (
                         <div key={index}>
                             <Message message={chat?.body} username={chat.senderId.username} avatar={chat.senderId.avatar} />
-                            {chat?.image && <img className="w-[350px] rounded-xl pb-5 cursor-pointer" onClick={setImagePreviewModal} src={chat.image} alt="chat-image" />}
-                            <ImagePreview image={chat.image}/>
+                            {chat?.image && <img className="w-[350px] rounded-xl pb-5 cursor-pointer" 
+                            onClick={()=>{
+                                setImagePreviewModal(chat.image); 
+                            }}
+                            src={chat.image} 
+                            alt="chat-image" 
+                            />}
                         </div>
                     )
                 })}

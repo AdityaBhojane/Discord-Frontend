@@ -15,6 +15,7 @@ import EditProfileIcon from "../icons svgs/EditProfileIcon";
 const EditServerModal: React.FC = () => {
     const EditServerModal = useModalStore((state) => state.EditServerModal);
     const setEditServerModal = useModalStore((state) => state.setEditServerModal);
+    const setInvitePeopleModal = useModalStore((state) => state.setInvitePeopleModal);
 
     return (
         <>
@@ -30,7 +31,13 @@ const EditServerModal: React.FC = () => {
                 <ModalContent className="bg-[#111214]">
                     <>
                         <div className="p-2 py-3 flex flex-col gap-2 mt-5 mb-2">
-                            <div className="p-2 rounded-sm hover:bg-[#5865F2] flex items-center justify-between cursor-pointer group">
+                            <div 
+                            className="p-2 rounded-sm hover:bg-[#5865F2] flex items-center justify-between cursor-pointer group"
+                            onClick={()=>{
+                                setInvitePeopleModal();
+                                setEditServerModal();
+                            }}
+                            >
                                 <p className="text-[#949CF7] text-sm group-hover:text-white">Invite People</p>
                                 <InviteIcon/>
                             </div>

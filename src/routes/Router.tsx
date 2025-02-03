@@ -8,19 +8,24 @@ import MainContent from "../components/MainContent/MainContent";
 import ServerMainContent from "../components/ServerMainContent/ServerMainContent";
 import MessageContent from "../components/MessageContent/MessageContent";
 import VoiceMessageContent from "../components/VoiceMessageContent/VoiceMessageContent";
+import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
+import Invite from "../pages/Invite/Invite";
 
 
 
 export default function AppRouter() {
   return (
     <Routes>
-      <Route path={'/signin'} element={<Auth><SignIn /></Auth>}/>
-      <Route path={'/signup'} element={<Auth><SignUp /></Auth>}/>
-      <Route path={'/@me'} element={<HomePage><MainContent/></HomePage>}/>
-      <Route path={'/signin'} element={<Auth><SignIn /></Auth>}/>
-      <Route path={'/channels/:serverId/message?/:channelId?'} element={<HomePage><ServerMainContent><MessageContent/></ServerMainContent></HomePage>}/>
-      <Route path={'/channels/:serverId/voice'} element={<HomePage><ServerMainContent><VoiceMessageContent/></ServerMainContent></HomePage>}/>
-      <Route path={'*'} element={<NotFound />}/>
+      <Route path={'/signin'} element={<Auth><SignIn /></Auth>} />
+      <Route path={'/signup'} element={<Auth><SignUp /></Auth>} />
+      <Route path={"/"} element={<ProtectedRoute />}>
+        <Route path={'/@me'} element={<HomePage><MainContent /></HomePage>} />
+        <Route path={'/signin'} element={<Auth><SignIn /></Auth>} />
+        <Route path={'/channels/:serverId/message?/:channelId?'} element={<HomePage><ServerMainContent><MessageContent /></ServerMainContent></HomePage>} />
+        <Route path={'/channels/:serverId/voice'} element={<HomePage><ServerMainContent><VoiceMessageContent /></ServerMainContent></HomePage>} />
+        <Route path={'/channels/:serverId/users'} element={<Invite/>} />
+      </Route>
+      <Route path={'*'} element={<NotFound />} />
     </Routes>
   )
 }

@@ -1,5 +1,7 @@
 import CreateServerModal from '../CreateServerModal/CreateServerModal'
 import EditServerModal from '../EditServerModal/EditServerModal'
+import ImagePreview from '../ImagePreview/ImagePreview'
+import InviteModal from '../InviteModal/InviteModal'
 
 
 function Modal() {
@@ -7,6 +9,8 @@ function Modal() {
         <>
             <CreateServerModal />
             <EditServerModal/>
+            <InviteModal linkCode={"DV4E5F"}/>
+            <ImagePreview/>
         </>
     )
 }

@@ -9,7 +9,8 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'hero-login': "url('./src/assets/Frame.png')",
+        'hero-login': "url('/src/assets/Frame.png')",
+        'heroInvite': "url('/src/assets/inviteBgi.webp')",
       },
       fontFamily: { 
         'ubuntu': ['"Ubuntu"', 'serif'], 

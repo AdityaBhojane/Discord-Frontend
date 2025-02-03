@@ -78,6 +78,7 @@ const DiscordInput: React.FC = () => {
         </div>
         <input
           type="file"
+          accept='image/png'
           className='hidden'
           ref={imageInputRef}
           onChange={(e) => {
