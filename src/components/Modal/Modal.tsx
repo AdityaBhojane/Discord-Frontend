@@ -1,16 +1,26 @@
+
+import CreateCategoryModal from '../CreateCategoryModal/CreateCategoryModal'
+import CreateChannelModal from '../CreateChannelModal/CreateChannelModal'
 import CreateServerModal from '../CreateServerModal/CreateServerModal'
-import EditServerModal from '../EditServerModal/EditServerModal'
+import DeleteServerModal from '../DeleteServerModal/DeleteServerModal'
+import EditModal from '../EditModal/EditModal'
+// import EditServerModal from '../EditServerModal/EditServerModal'
 import ImagePreview from '../ImagePreview/ImagePreview'
 import InviteModal from '../InviteModal/InviteModal'
 
 
 function Modal() {
+
     return (
         <>
             <CreateServerModal />
-            <EditServerModal/>
+            {/* <EditServerModal/> */}
             <InviteModal linkCode={"DV4E5F"}/>
             <ImagePreview/>
+            <CreateCategoryModal/>
+            <CreateChannelModal/>
+            <EditModal/>
+            <DeleteServerModal/>
         </>
     )
 }

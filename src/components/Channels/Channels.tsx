@@ -4,6 +4,7 @@ import SpeakerIcon from "../icons svgs/SpeakerIcon";
 
 export default function Channels({text,type}:{text:string, type:string}) {
 
+
     return (
         <div 
         className="px-2 "

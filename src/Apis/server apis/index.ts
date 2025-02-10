@@ -48,4 +48,32 @@ export const getServerByIdRequest = async ({token, serverId}:{token:string, serv
     }
 };
 
+export const updateServerRequest = async ({token, serverId, name}:{token:string, serverId:string, name:string,}) => {
+    try {
+        const response = await axiosConfig.put(`/servers/${serverId}`, {
+            name,
+        },{
+            headers:{
+                "x-access-token":token
+            }
+        });
+        return response.data;
+    } catch(error) {
+        console.log(error)
+        ErrorHandler(error)    
+    }
+};
 
+export const deleteServerRequest = async ({token, serverId}:{token:string, serverId:string}) => {
+    try {
+        const response = await axiosConfig.delete(`/servers/${serverId}`,{
+            headers:{
+                "x-access-token":token
+            }
+        });
+        return response.data;
+    } catch(error) {
+        console.log(error)
+        ErrorHandler(error)    
+    }
+}

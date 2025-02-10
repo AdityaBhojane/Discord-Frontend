@@ -74,7 +74,7 @@ const CreateServerModal: React.FC = () => {
               {createServer ?
                 <div className="p-2  flex items-center justify-center flex-col rounded-lg mb-5 cursor-pointer m-4 ">
                   <div className="flex items-center justify-center p-2">
-                    <label className="relative flex flex-col items-center justify-center w-20 h-20 border-2 border-dashed border-gray-400 rounded-full cursor-pointer hover:border-gray-300">
+                    {/* <label className="relative flex flex-col items-center justify-center w-20 h-20 border-2 border-dashed border-gray-400 rounded-full cursor-pointer hover:border-gray-300">
                       <input type="file" className="hidden" />
                       <div className="flex flex-col items-center">
                         <svg
@@ -95,7 +95,7 @@ const CreateServerModal: React.FC = () => {
                       <div className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xl">
                         +
                       </div>
-                    </label>
+                    </label> */}
                   </div>
                   <div className="w-full">
                     <label className=" text-sm font-bold text-[#B9BBBE] mb-2" htmlFor="email">

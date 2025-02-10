@@ -13,6 +13,8 @@ import Invite from "../pages/Invite/Invite";
 
 
 
+
+
 export default function AppRouter() {
   return (
     <Routes>
@@ -22,7 +24,7 @@ export default function AppRouter() {
         <Route path={'/@me'} element={<HomePage><MainContent /></HomePage>} />
         <Route path={'/signin'} element={<Auth><SignIn /></Auth>} />
         <Route path={'/channels/:serverId/message?/:channelId?'} element={<HomePage><ServerMainContent><MessageContent /></ServerMainContent></HomePage>} />
-        <Route path={'/channels/:serverId/voice'} element={<HomePage><ServerMainContent><VoiceMessageContent /></ServerMainContent></HomePage>} />
+        <Route path={'/channels/:serverId/:channelId/voice'} element={<HomePage><ServerMainContent><VoiceMessageContent /></ServerMainContent></HomePage>} />
         <Route path={'/channels/:serverId/users'} element={<Invite/>} />
       </Route>
       <Route path={'*'} element={<NotFound />} />

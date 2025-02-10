@@ -9,13 +9,20 @@ import CreateChannelIcon from "../icons svgs/CreateChannelIcon";
 import CreateCategoryIcon from "../icons svgs/CreateCategoryIcon";
 import NotificationMini from "../icons svgs/NotificationMini";
 import EditProfileIcon from "../icons svgs/EditProfileIcon";
+import { Trash } from "lucide-react";
 
 
 
-const EditServerModal: React.FC = () => {
+
+const EditServerModal= ({serverId}:{serverId:string | undefined}) => {
     const EditServerModal = useModalStore((state) => state.EditServerModal);
+    const setDeleteServerModal = useModalStore(state=> state.setDeleteServerModal)
     const setEditServerModal = useModalStore((state) => state.setEditServerModal);
     const setInvitePeopleModal = useModalStore((state) => state.setInvitePeopleModal);
+    const setCreateCategoryModal = useModalStore(state => state.setCreateCategoryModal);
+    // const setCreateChannelModal = useModalStore(state => state.setCreateChannelModal);
+    const setEditModal = useModalStore(state => state.setEditModal);
+    
 
     return (
         <>
@@ -41,15 +48,15 @@ const EditServerModal: React.FC = () => {
                                 <p className="text-[#949CF7] text-sm group-hover:text-white">Invite People</p>
                                 <InviteIcon/>
                             </div>
-                            <div className="p-2 rounded-sm hover:bg-[#5865F2] flex items-center justify-between cursor-pointer">
-                                <p className="text-white text-sm">Server Settings</p>
-                                <SettingsIcon/>
-                            </div>
-                            <div className="p-2 rounded-sm hover:bg-[#5865F2] flex items-center justify-between cursor-pointer">
-                                <p className="text-white text-sm">Create Channel</p>
+      
+                            <div 
+                            // onClick={setCreateChannelModal} 
+                            className="p-2 rounded-sm hover:bg-[#5865F2] flex items-center justify-between cursor-pointer"
+                            >
+                                <p className="text-[#7e7e7e] text-sm">Create Channel</p>
                                 <CreateChannelIcon/>
                             </div>
-                            <div className="p-2 rounded-sm hover:bg-[#5865F2] flex items-center justify-between cursor-pointer">
+                            <div onClick={()=>setCreateCategoryModal()} className="p-2 rounded-sm hover:bg-[#5865F2] flex items-center justify-between cursor-pointer">
                                 <p className="text-white text-sm">Create Category</p>
                                 <CreateCategoryIcon/>
                             </div>
@@ -57,9 +64,21 @@ const EditServerModal: React.FC = () => {
                                 <p className="text-white text-sm">Notification Settings</p>
                                 <NotificationMini/>
                             </div>
-                            <div className="p-2 rounded-sm hover:bg-[#5865F2] flex items-center justify-between cursor-pointer">
-                                <p className="text-white text-sm">Edit Server Profile</p>
+                            <div onClick={()=>{
+                                const id = serverId?? "";
+                                setEditModal('','category',id)
+                                }} 
+                                className="p-2 rounded-sm hover:bg-[#5865F2] flex items-center justify-between cursor-pointer">
+                                <p className="text-white text-sm">Edit Server</p>
                                 <EditProfileIcon/>
+                            </div>
+                            <div className="p-2 rounded-sm hover:bg-[#5865F2] flex items-center justify-between cursor-pointer">
+                                <p className="text-[#7e7e7e] text-sm">Server Settings</p>
+                                <SettingsIcon/>
+                            </div>
+                            <div onClick={setDeleteServerModal} className="p-2 rounded-sm hover:bg-[#5865F2] flex items-center justify-between cursor-pointer">
+                                <p className="text-red-500 text-sm">Delete Server</p>
+                                <Trash className="text-[#f32424] size-5"/>
                             </div>
                         </div>
                     </>
