@@ -77,3 +77,5 @@ export const deleteServerRequest = async ({token, serverId}:{token:string, serve
         ErrorHandler(error)    
     }
 }
+
+export const addMemberRequest = async()=>{}
