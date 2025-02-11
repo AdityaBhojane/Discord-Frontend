@@ -15,7 +15,7 @@ function Modal() {
         <>
             <CreateServerModal />
             {/* <EditServerModal/> */}
-            <InviteModal linkCode={"DV4E5F"}/>
+            <InviteModal />
             <ImagePreview/>
             <CreateCategoryModal/>
             <CreateChannelModal/>
