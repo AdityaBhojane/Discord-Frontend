@@ -4,16 +4,22 @@ import {
 } from "@nextui-org/react";
 import { useModalStore } from "../../zustand/modal store/ModalStore";
 import { useState } from "react";
+import { useServerStore } from "../../zustand/sever store/serverStore";
+import { useGetServersById } from "../../Hooks/apis/server/useGetServerById";
 
 
 
-const InviteModal = ({ linkCode }: { linkCode: string }) => {
+const InviteModal = () => {
     const InvitePeople = useModalStore((state) => state.InvitePeople);
     const setInvitePeopleModal = useModalStore((state) => state.setInvitePeopleModal);
     const [copySuccess, setCopySuccess] = useState(false);
+    const serverDetails = useServerStore(state => state.serverDetails)
+
+    const {getServerById} = useGetServersById(serverDetails.serverId);
+    console.log(getServerById)
 
     const copyToClipboard = () => {
-        navigator.clipboard.writeText(linkCode)
+        navigator.clipboard.writeText(`http://localhost:5173/channels/${serverDetails?.serverId}/${getServerById?.joinCode}/users`)
             .then(() => {
                 setCopySuccess(true);
                 setTimeout(() => setCopySuccess(false), 2000);
@@ -64,7 +70,7 @@ const InviteModal = ({ linkCode }: { linkCode: string }) => {
                                             <input
                                                 type="text"
                                                 readOnly
-                                                value={`https://discord.gg/your-invite-link/${linkCode}`}
+                                                value={`http://localhost:5173/channels/${serverDetails?.serverId}/${getServerById?.joinCode}/users`}
                                                 className="bg-transparent text-sm flex-1 focus:outline-none"
                                             />
                                             <button onClick={copyToClipboard} className="ml-2 text-blue-500 hover:text-blue-400">

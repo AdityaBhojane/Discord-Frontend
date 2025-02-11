@@ -25,7 +25,7 @@ export default function AppRouter() {
         <Route path={'/signin'} element={<Auth><SignIn /></Auth>} />
         <Route path={'/channels/:serverId/message?/:channelId?'} element={<HomePage><ServerMainContent><MessageContent /></ServerMainContent></HomePage>} />
         <Route path={'/channels/:serverId/:channelId/voice'} element={<HomePage><ServerMainContent><VoiceMessageContent /></ServerMainContent></HomePage>} />
-        <Route path={'/channels/:serverId/users'} element={<Invite/>} />
+        <Route path={'/channels/:serverId/:joinCode/users'} element={<Invite/>} />
       </Route>
       <Route path={'*'} element={<NotFound />} />
     </Routes>

@@ -9,7 +9,9 @@ import CreateChannelIcon from "../icons svgs/CreateChannelIcon";
 import CreateCategoryIcon from "../icons svgs/CreateCategoryIcon";
 import NotificationMini from "../icons svgs/NotificationMini";
 import EditProfileIcon from "../icons svgs/EditProfileIcon";
-import { Trash } from "lucide-react";
+import { LogOut, Trash } from "lucide-react";
+import { useAuthStore } from "../../zustand/auth store/AuthStore";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -22,6 +24,8 @@ const EditServerModal= ({serverId}:{serverId:string | undefined}) => {
     const setCreateCategoryModal = useModalStore(state => state.setCreateCategoryModal);
     // const setCreateChannelModal = useModalStore(state => state.setCreateChannelModal);
     const setEditModal = useModalStore(state => state.setEditModal);
+    const setAuthClear = useAuthStore(state=> state.setClearAuth);
+    const navigate = useNavigate()
     
 
     return (
@@ -75,6 +79,13 @@ const EditServerModal= ({serverId}:{serverId:string | undefined}) => {
                             <div className="p-2 rounded-sm hover:bg-[#5865F2] flex items-center justify-between cursor-pointer">
                                 <p className="text-[#7e7e7e] text-sm">Server Settings</p>
                                 <SettingsIcon/>
+                            </div>
+                            <div onClick={()=>{
+                                setAuthClear();
+                                navigate('/signin')
+                                }} className="p-2 rounded-sm hover:bg-[#5865F2] flex items-center justify-between cursor-pointer">
+                                <p className="text-red-500 text-sm">LogOut</p>
+                                <LogOut className="text-[#fe3f3f] size-5"/>
                             </div>
                             <div onClick={setDeleteServerModal} className="p-2 rounded-sm hover:bg-[#5865F2] flex items-center justify-between cursor-pointer">
                                 <p className="text-red-500 text-sm">Delete Server</p>

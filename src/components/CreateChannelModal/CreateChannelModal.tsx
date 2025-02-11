@@ -28,6 +28,7 @@ export default function CreateChannelModal() {
     useEffect(()=>{
         if(isSuccess){
             QueryClient.invalidateQueries({queryKey:["fetchServersById"]});
+            setText('')
         }
     },[QueryClient, isSuccess])
     

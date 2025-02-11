@@ -103,7 +103,15 @@ const SignIn: React.FC = () => {
                     <MyQR />
                     <br />
                     <div className="text-center">
-                        <button className='bg-gray-500 px-6 py-2 mt-5'>Guest Login</button>
+                        <button 
+                        onClick={()=>{
+                            signinMutation({
+                                email:'Guest@gmail.com',
+                                password:"g12345"
+                            });
+                        }}
+                        className='bg-gray-500 px-6 py-2 mt-5'
+                        >Guest Login</button>
                     </div>
                 </div>
             </div>

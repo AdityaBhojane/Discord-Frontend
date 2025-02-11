@@ -78,4 +78,15 @@ export const deleteServerRequest = async ({token, serverId}:{token:string, serve
     }
 }
 
-export const addMemberRequest = async()=>{}
+export const addMemberRequest = async({token, serverId}:{token:string, serverId:string})=>{
+    try {
+        const response = await axiosConfig.put(`/servers/${serverId}/users`,{},{
+            headers:{
+                "x-access-token":token
+            }
+        });
+        return response.data;
+    } catch(error) {
+        ErrorHandler(error)    
+    }
+}
