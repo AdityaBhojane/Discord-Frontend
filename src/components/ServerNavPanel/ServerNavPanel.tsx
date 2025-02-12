@@ -4,9 +4,7 @@ import CategoriesToggle from "../CategoriesToggle/CategoriesToggle";
 import Channels from "../Channels/Channels";
 import DiscordIcon from "../icons svgs/DiscordIcon";
 import EventIcon from "../icons svgs/EventIcon";
-import HeadphonesIcon from "../icons svgs/HeadphonesIcon";
-import MicIcon from "../icons svgs/MicIcon";
-import SettingsIcon from "../icons svgs/SettingsIcon";
+
 import { useGetServersById } from "../../Hooks/apis/server/useGetServerById";
 import { useCallback, useEffect, useState } from "react";
 import { useSocketContext } from "../../zustand/socket/useSocketContext";
@@ -14,6 +12,7 @@ import { getJoinedUsers } from "../../Apis/joinedUsers";
 import { useAuthStore } from "../../zustand/auth store/AuthStore";
 import EditServerModal from "../EditServerModal/EditServerModal";
 import { useServerStore } from "../../zustand/sever store/serverStore";
+import { Headphones, Mic, Settings } from "lucide-react";
 
 
 
@@ -157,17 +156,17 @@ export default function ServerNavPanel() {
                     </div>
                 </CategoriesToggle>
                 <div className="w-full p-3 h-fit rounded-lg flex gap-3 bg-[#232428] mt-auto">
-                    <div className="rounded-full bg-[#09788b]  flex justify-center items-center cursor-pointer p-2">
-                        <DiscordIcon width='25px' height='25px' />
+                    <div className="h-10 w-10 rounded-full bg-[#09788b]  flex justify-center items-center cursor-pointer">
+                        <DiscordIcon width={'100%'} height={'100%'} />
                     </div>
                     <div className="h-10">
                         <h3 className="text-sm ">Aditya</h3>
                         <p className='text-[12px]'>online</p>
                     </div>
                     <div className="h-10 flex items-center gap-2 ml-auto">
-                        <MicIcon />
-                        <HeadphonesIcon />
-                        <SettingsIcon />
+                        <Mic className="size-5 cursor-pointer text-[#ccc]"/>
+                        <Headphones className="size-5 cursor-pointer text-[#ccc]" />
+                        <Settings className="size-5 cursor-pointer text-[#ccc]"/>
                     </div>
                 </div>
             </div>

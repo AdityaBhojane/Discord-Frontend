@@ -35,7 +35,7 @@ export default function SideBar() {
                     setNavigation()
                 }}
             >
-                <DiscordIcon width={'30px'} height={'30px'} />
+                <DiscordIcon width={'100%'} height={'100%'} />
             </div>
             {servers?.map((server: {
                 categories: ICategory[];
