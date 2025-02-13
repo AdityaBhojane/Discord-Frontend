@@ -1,22 +1,27 @@
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import { useAuthStore } from "../../zustand/auth store/AuthStore"
 import { useNavigate } from "react-router-dom";
 
 
-function ProtectedUser() {
+function ProtectedUser({children}:{children:ReactNode}) {
     const navigate = useNavigate()
     const token = useAuthStore(state=> state.token);
 
     useEffect(()=>{
         if(token){
-            navigate('/@me')
+          console.log('page')
+            navigate('/@me');
+        }else{
+          console.log('signin')
+            navigate('/signin')
         }
     },[navigate, token])
+    
 
   return (
-    <div className="flex justify-center items-center">
-        <h1 className="text-2xl">Loading ...</h1>
-    </div>
+    <>
+      {children}
+    </>
   )
 }
 

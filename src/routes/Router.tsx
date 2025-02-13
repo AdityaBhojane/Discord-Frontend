@@ -19,19 +19,18 @@ import ProtectedUser from "../components/protectedRouteUser/ProtectedUser";
 export default function AppRouter() {
   return (
     <Routes>
-      <Route path={'/'} element={<ProtectedUser />} >
-        <Route path={'/signin'} element={<Auth><SignIn /></Auth>} />
-        <Route path={'/signup'} element={<Auth><SignUp /></Auth>} />
-      </Route>
-      <Route path={"/"} element={<ProtectedRoute />}>
+      <Route path="/" element={<ProtectedUser><></></ProtectedUser>}/>
+      <Route path={'/signin'} element={<ProtectedUser><Auth><SignIn /></Auth></ProtectedUser>} />
+      <Route path={'/signup'} element={<ProtectedUser><Auth><SignUp /></Auth></ProtectedUser>} />
+      <Route path={"/?"} element={<ProtectedRoute />}>
         <Route path={'/@me'} element={<HomePage><MainContent /></HomePage>} />
         <Route path={'/signin'} element={<Auth><SignIn /></Auth>} />
         <Route path={'/channels/:serverId/message?/:channelId?'} element={<HomePage><ServerMainContent><MessageContent /></ServerMainContent></HomePage>} />
         <Route path={'/channels/:serverId/:channelId/voice'} element={<HomePage><ServerMainContent><VoiceMessageContent /></ServerMainContent></HomePage>} />
-        <Route path={'/channels/:serverId/:joinCode/users'} element={<Invite/>} />
+        <Route path={'/channels/:serverId/:joinCode/users'} element={<Invite />} />
       </Route>
       <Route path={'*'} element={<NotFound />} />
-      
+
     </Routes>
   )
 }

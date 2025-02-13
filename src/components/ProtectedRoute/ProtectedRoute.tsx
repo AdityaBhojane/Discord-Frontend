@@ -1,6 +1,6 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import { useAuthStore } from "../../zustand/auth store/AuthStore";
 import { useEffect } from "react";
+import { useAuthStore } from "../../zustand/auth store/AuthStore";
 
 export default function ProtectedRoute() {
   const token = useAuthStore(state => state.token);
