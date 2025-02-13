@@ -3,6 +3,10 @@
     {
       "source": "/api/:path*",
       "destination": "http://13.61.112.52:3001/api/:path*"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/index.html"
     }
   ],
   "headers": [
