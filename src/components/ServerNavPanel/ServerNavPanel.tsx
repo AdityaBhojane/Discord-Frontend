@@ -8,8 +8,8 @@ import EventIcon from "../icons svgs/EventIcon";
 import { useGetServersById } from "../../Hooks/apis/server/useGetServerById";
 import { useCallback, useEffect, useState } from "react";
 import { useSocketContext } from "../../zustand/socket/useSocketContext";
-import { getJoinedUsers } from "../../Apis/joinedUsers";
-import { useAuthStore } from "../../zustand/auth store/AuthStore";
+// import { getJoinedUsers } from "../../Apis/joinedUsers";
+// import { useAuthStore } from "../../zustand/auth store/AuthStore";
 import EditServerModal from "../EditServerModal/EditServerModal";
 import { useServerStore } from "../../zustand/sever store/serverStore";
 import { Headphones, Mic, Settings } from "lucide-react";
@@ -26,48 +26,35 @@ export default function ServerNavPanel() {
     const setEditModal = useModalStore(state => state.setEditModal);
     //isPending,isSuccess, error, add this in future
     const { getServerById } = useGetServersById(serverId);
-    const [usersJoined, setUsersJoined] = useState(false);
-    const token = useAuthStore((state) => state.token);
+    // const [usersJoined, setUsersJoined] = useState(false);
+    // const token = useAuthStore((state) => state.token);
   
 
-    const handleJoinedUsers = useCallback(async () => {
-        try {
-            const response = await getJoinedUsers({ channelId: getServerById?.categories[0].channels[0]._id, token });
-            console.log(response);
-            if (response.joinedUsers > 0) {
-                setUsersJoined(true);
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }, [getServerById?.categories, token]);
 
     const handleConnect = useCallback(
         (e: { preventDefault: () => void; }) => {
             e.preventDefault();
-            handleJoinedUsers();
-            if (usersJoined) {
-                return;
-            }
+            // handleJoinedUsers();
+
             socket.emit("join-room", { email: "email", room: serverId });
         },
-        [handleJoinedUsers, serverId, socket, usersJoined]
+        [serverId, socket]
     );
 
 
 
 
     useEffect(() => {
-        if (usersJoined) {
-            navigate(`/channels/${serverId}/${getServerById?.categories[0].channels[0]._id}`)
-            return;
-        }
+        // if (usersJoined) {
+        //     navigate(`/channels/${serverId}/${getServerById?.categories[0].channels[0]._id}`)
+        //     return;
+        // }
         socket.on("join-room", () => {
             navigate(`/channels/${serverId}/${getServerById?.categories[0].channels[0]._id}/voice`)
         });
 
         return () => { socket.off("join-room",) };
-    }, [usersJoined, navigate, serverId, getServerById?.categories, socket]);
+    }, [ navigate, serverId, getServerById?.categories, socket]);
 
 
    useEffect(()=>{
@@ -147,11 +134,11 @@ export default function ServerNavPanel() {
                 </div>
                 <CategoriesToggle key={Date.now()} categoryName={"VOICE CHANNELS"} >
                     <div className="relative" onClick={(e) => {
-                        if (usersJoined) return;
+                        // if (usersJoined) return;
                         handleConnect(e)
                     }}
                     >
-                        <span className="text-[10px] px-4 font-bold text-[#ec9090] absolute top-[50%] right-0 -translate-y-[50%]">{usersJoined && "FULL"}</span>
+                        {/* <span className="text-[10px] px-4 font-bold text-[#ec9090] absolute top-[50%] right-0 -translate-y-[50%]">{usersJoined && "FULL"}</span> */}
                         <Channels text={`general`} type={"voice"} />
                     </div>
                 </CategoriesToggle>
