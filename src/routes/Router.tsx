@@ -10,6 +10,7 @@ import MessageContent from "../components/MessageContent/MessageContent";
 import VoiceMessageContent from "../components/VoiceMessageContent/VoiceMessageContent";
 import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
 import Invite from "../pages/Invite/Invite";
+import ProtectedUser from "../components/protectedRouteUser/ProtectedUser";
 
 
 
@@ -18,8 +19,10 @@ import Invite from "../pages/Invite/Invite";
 export default function AppRouter() {
   return (
     <Routes>
-      <Route path={'/signin'} element={<Auth><SignIn /></Auth>} />
-      <Route path={'/signup'} element={<Auth><SignUp /></Auth>} />
+      <Route path={'/'} element={<ProtectedUser />} >
+        <Route path={'/signin'} element={<Auth><SignIn /></Auth>} />
+        <Route path={'/signup'} element={<Auth><SignUp /></Auth>} />
+      </Route>
       <Route path={"/"} element={<ProtectedRoute />}>
         <Route path={'/@me'} element={<HomePage><MainContent /></HomePage>} />
         <Route path={'/signin'} element={<Auth><SignIn /></Auth>} />
@@ -28,6 +31,7 @@ export default function AppRouter() {
         <Route path={'/channels/:serverId/:joinCode/users'} element={<Invite/>} />
       </Route>
       <Route path={'*'} element={<NotFound />} />
+      
     </Routes>
   )
 }
