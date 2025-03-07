@@ -20,8 +20,8 @@ export default function AppRouter() {
   return (
     <Routes>
       <Route path="/" element={<ProtectedUser><></></ProtectedUser>}/>
-      <Route path={'/signin'} element={<ProtectedUser><Auth><SignIn /></Auth></ProtectedUser>} />
-      <Route path={'/signup'} element={<ProtectedUser><Auth><SignUp /></Auth></ProtectedUser>} />
+      <Route path={'/signin'} element={<ProtectedUser><Auth><SignIn/></Auth></ProtectedUser>} />
+      <Route path={'/signup'} element={<Auth><SignUp/></Auth>} />
       <Route path={"/?"} element={<ProtectedRoute />}>
         <Route path={'/@me'} element={<HomePage><MainContent /></HomePage>} />
         <Route path={'/signin'} element={<Auth><SignIn /></Auth>} />
